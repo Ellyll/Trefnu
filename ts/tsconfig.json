@@ -1,0 +1,8 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "outDir": "../js",
+        "outFile": "../js/app.js",
+        "sourceMap": true
+    }
+}

@@ -15,8 +15,12 @@ namespace Trefnu {
 
             const lled = Math.floor(ctx.canvas.width/niferArDaws);
             const uchder = Math.floor(ctx.canvas.height/niferLawr);
-
             const maint = Math.floor(Math.min(lled/trefniadau[0].data[0].length, uchder/trefniadau[0].data.length));
+            const lledTrefn = maint*trefniadau[0].data[0].length;
+            const uchderTrefn = maint*trefniadau[0].data.length;
+            const xCychwyn = Math.floor((lled - lledTrefn)/2.0);
+            const yCychwyn = Math.floor((uchder - uchderTrefn)/2.0);
+
 
             ctx.font = `${Math.floor(maint*2)}px sans-serif`;           
 
@@ -33,19 +37,14 @@ namespace Trefnu {
                             ctx.fillStyle = lliw.felRGBA();
                             const x = Math.floor(colofn*maint)+(arDraws*lled);
                             const y = Math.floor(llinell*maint)+(lawr*uchder);
-                            ctx.fillRect(x, y, Math.ceil(maint), Math.ceil(maint));
+                            ctx.fillRect(x+xCychwyn, y+yCychwyn, Math.ceil(maint), Math.ceil(maint));
                         }
                     }
 
                     const enw = trefniadau[i].mathTrefniad;
                     const lledTestun = ctx.measureText(enw + ' ').width;
                     ctx.fillStyle = '#000';
-                    ctx.fillText(enw, ((arDraws+1)*lled) - lledTestun, (lawr*uchder) + (maint*2));
-
-                    ctx.strokeStyle = '#AAA';
-                    ctx.lineWidth = 1;
-                    ctx.strokeRect(arDraws*lled, lawr*uchder, (arDraws*lled)+lled, (lawr*uchder)+uchder);
-                    ctx.stroke();
+                    ctx.fillText(enw, (arDraws*lled) + xCychwyn + lledTrefn - lledTestun, (lawr*uchder) + yCychwyn + (maint*2));
                 }
             }
 
